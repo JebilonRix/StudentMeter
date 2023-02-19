@@ -1,0 +1,36 @@
+﻿using Newtonsoft.Json;
+
+namespace DersTakip
+{
+    public static class SaveLoad
+    {
+        private static readonly string _saveFileStudentsPath = string.Format(@"{0}\save.json", Application.StartupPath);
+
+        public static void Save()
+        {
+            //Converts dictionary members to json data.
+            string jsonData = JsonConvert.SerializeObject(DebtMethods.Students);
+
+            //Writes json data to the file.
+            File.WriteAllText(_saveFileStudentsPath, jsonData);
+        }
+
+        public static void Load()
+        {
+            //Reads the save file.
+            string jsonData = File.ReadAllText(_saveFileStudentsPath);
+
+            //Converts the data which is in json to list.
+            List<Student> listOfStudents = JsonConvert.DeserializeObject<List<Student>>(jsonData);
+
+            //Null check
+            if (listOfStudents == null)
+            {
+                return;
+            }
+
+            //Adds to all data to list.
+            DebtMethods.Students.AddRange(listOfStudents);
+        }
+    }
+}
