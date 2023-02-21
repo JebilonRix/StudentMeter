@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace DersTakip
+namespace StudentMeter
 {
     public static class SaveLoad
     {
@@ -9,7 +9,7 @@ namespace DersTakip
         public static void Save()
         {
             //Converts dictionary members to json data.
-            string jsonData = JsonConvert.SerializeObject(DebtMethods.Students);
+            string jsonData = JsonConvert.SerializeObject(StudentMethods.Students);
 
             //Writes json data to the file.
             File.WriteAllText(_saveFileStudentsPath, jsonData);
@@ -30,7 +30,7 @@ namespace DersTakip
             }
 
             //Adds to all data to list.
-            DebtMethods.Students.AddRange(listOfStudents);
+            StudentMethods.Students.AddRange(listOfStudents);
         }
     }
 }

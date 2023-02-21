@@ -1,4 +1,4 @@
-﻿namespace DersTakip
+﻿namespace StudentMeter
 {
     internal static class FormMethods
     {

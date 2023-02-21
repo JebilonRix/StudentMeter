@@ -1,6 +1,6 @@
-﻿namespace DersTakip
+﻿namespace StudentMeter
 {
-    partial class FollowUpForm
+    partial class StudentMeterForm
     {
         /// <summary>
         ///  Required designer variable.
@@ -29,8 +29,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.addLessonButton = new System.Windows.Forms.Button();
             this.studentNameComboBox1 = new System.Windows.Forms.ComboBox();
             this.lessonPanel = new System.Windows.Forms.Panel();
@@ -58,12 +58,15 @@
             this.deleteButton = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.studentNameComboBox3 = new System.Windows.Forms.ComboBox();
-            this.dataGridViewer = new System.Windows.Forms.DataGridView();
+            this.dataGridView_TotalValues = new System.Windows.Forms.DataGridView();
             this.showProfitButton = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.dataGridView_LessonEntry = new System.Windows.Forms.DataGridView();
             this.lessonPanel.SuspendLayout();
             this.paymentPanel.SuspendLayout();
             this.deleteEntryPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewer)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_TotalValues)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_LessonEntry)).BeginInit();
             this.SuspendLayout();
             // 
             // addLessonButton
@@ -345,45 +348,45 @@
             this.studentNameComboBox3.Size = new System.Drawing.Size(193, 25);
             this.studentNameComboBox3.TabIndex = 6;
             // 
-            // dataGridViewer
+            // dataGridView_TotalValues
             // 
-            this.dataGridViewer.AllowUserToAddRows = false;
-            this.dataGridViewer.AllowUserToDeleteRows = false;
-            this.dataGridViewer.AllowUserToResizeRows = false;
-            this.dataGridViewer.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridViewer.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
-            this.dataGridViewer.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewer.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridViewer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Courier New", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewer.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridViewer.Dock = System.Windows.Forms.DockStyle.Right;
-            this.dataGridViewer.Location = new System.Drawing.Point(463, 0);
-            this.dataGridViewer.Name = "dataGridViewer";
-            this.dataGridViewer.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            this.dataGridViewer.RowHeadersWidth = 20;
-            this.dataGridViewer.RowTemplate.Height = 25;
-            this.dataGridViewer.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dataGridViewer.ShowCellErrors = false;
-            this.dataGridViewer.ShowCellToolTips = false;
-            this.dataGridViewer.ShowRowErrors = false;
-            this.dataGridViewer.Size = new System.Drawing.Size(544, 483);
-            this.dataGridViewer.TabIndex = 10;
-            this.dataGridViewer.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridViewer_CellClick);
-            this.dataGridViewer.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridViewer_CellValueChanged);
+            this.dataGridView_TotalValues.AllowUserToAddRows = false;
+            this.dataGridView_TotalValues.AllowUserToDeleteRows = false;
+            this.dataGridView_TotalValues.AllowUserToResizeRows = false;
+            this.dataGridView_TotalValues.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView_TotalValues.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
+            this.dataGridView_TotalValues.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView_TotalValues.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.dataGridView_TotalValues.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Courier New", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView_TotalValues.DefaultCellStyle = dataGridViewCellStyle4;
+            this.dataGridView_TotalValues.Dock = System.Windows.Forms.DockStyle.Right;
+            this.dataGridView_TotalValues.Location = new System.Drawing.Point(463, 0);
+            this.dataGridView_TotalValues.Name = "dataGridView_TotalValues";
+            this.dataGridView_TotalValues.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.dataGridView_TotalValues.RowHeadersWidth = 20;
+            this.dataGridView_TotalValues.RowTemplate.Height = 25;
+            this.dataGridView_TotalValues.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.dataGridView_TotalValues.ShowCellErrors = false;
+            this.dataGridView_TotalValues.ShowCellToolTips = false;
+            this.dataGridView_TotalValues.ShowRowErrors = false;
+            this.dataGridView_TotalValues.Size = new System.Drawing.Size(544, 726);
+            this.dataGridView_TotalValues.TabIndex = 10;
+            this.dataGridView_TotalValues.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridViewer_CellClick);
+            this.dataGridView_TotalValues.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridViewer_CellValueChanged);
             // 
             // showProfitButton
             // 
@@ -395,18 +398,40 @@
             this.showProfitButton.UseVisualStyleBackColor = true;
             this.showProfitButton.Click += new System.EventHandler(this.ShowProfitButton_Click);
             // 
-            // FollowUpForm
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(302, 441);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(108, 25);
+            this.button1.TabIndex = 12;
+            this.button1.Text = "Students Lessons";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
+            // 
+            // dataGridView_LessonEntry
+            // 
+            this.dataGridView_LessonEntry.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_LessonEntry.Location = new System.Drawing.Point(9, 492);
+            this.dataGridView_LessonEntry.Name = "dataGridView_LessonEntry";
+            this.dataGridView_LessonEntry.RowTemplate.Height = 25;
+            this.dataGridView_LessonEntry.Size = new System.Drawing.Size(400, 150);
+            this.dataGridView_LessonEntry.TabIndex = 13;
+            // 
+            // StudentMeterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1007, 483);
+            this.ClientSize = new System.Drawing.Size(1007, 726);
+            this.Controls.Add(this.dataGridView_LessonEntry);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.showProfitButton);
-            this.Controls.Add(this.dataGridViewer);
+            this.Controls.Add(this.dataGridView_TotalValues);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.deleteEntryPanel);
             this.Controls.Add(this.paymentPanel);
             this.Controls.Add(this.lessonPanel);
-            this.Name = "FollowUpForm";
+            this.Name = "StudentMeterForm";
             this.Text = "StudentMeter";
             this.Load += new System.EventHandler(this.FollowUpForm_Load);
             this.lessonPanel.ResumeLayout(false);
@@ -415,23 +440,30 @@
             this.paymentPanel.PerformLayout();
             this.deleteEntryPanel.ResumeLayout(false);
             this.deleteEntryPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewer)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_TotalValues)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_LessonEntry)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
         private Button addLessonButton;
         private Button addPaymentButton;
+        private Button button1;
         private Button currentTimeFinishButton;
         private Button currentTimeStartButton;
         private Button deleteButton;
         private Button saveButton;
+        private Button showProfitButton;
         private ComboBox studentNameComboBox1;
         private ComboBox studentNameComboBox2;
         private ComboBox studentNameComboBox3;
-        private DataGridView dataGridViewer;
+        private DataGridView dataGridView_LessonEntry;
+        private DataGridView dataGridView_TotalValues;
         private Label label1;
+        private Label label10;
+        private Label label11;
         private Label label3;
         private Label label4;
         private Label label5;
@@ -443,12 +475,9 @@
         private Panel paymentPanel;
         private TextBox costTextBox;
         private TextBox finishTime_Hour;
+        private TextBox finishTime_Minutes;
         private TextBox paidMoneyTextBox;
         private TextBox startTime_Hour;
-        private Button showProfitButton;
-        private Label label10;
         private TextBox startTime_Minutes;
-        private Label label11;
-        private TextBox finishTime_Minutes;
     }
 }

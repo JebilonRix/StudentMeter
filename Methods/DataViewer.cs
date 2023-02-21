@@ -1,6 +1,6 @@
 ﻿using System.Data;
 
-namespace DersTakip
+namespace StudentMeter
 {
     public static class DataViewer
     {
@@ -16,10 +16,15 @@ namespace DersTakip
             _dataTable.Columns.Add("Difference", typeof(int));
 
             //makes columns read only because i dont want to change values via cells.
-            _dataTable.Columns[1].ReadOnly = true;
-            _dataTable.Columns[2].ReadOnly = true;
-            _dataTable.Columns[3].ReadOnly = true;
-            _dataTable.Columns[4].ReadOnly = true;
+            for (int i = 0; i < _dataTable.Columns.Count; i++)
+            {
+                if (i == 0)
+                {
+                    continue;
+                }
+
+                _dataTable.Columns[i].ReadOnly = true;
+            }
         }
 
         public static void Update(DataGridView dataGridView)
@@ -28,7 +33,7 @@ namespace DersTakip
             _dataTable.Clear();
 
             //Adds data table to data grid view
-            foreach (Student student in DebtMethods.Students)
+            foreach (Student student in StudentMethods.Students)
             {
                 //Calculates the difference
                 float difference = student.TotalDebt - student.TotalPaidMoney;
@@ -40,6 +45,39 @@ namespace DersTakip
 
             //Loads the data table to data grid view.
             dataGridView.DataSource = _dataTable;
+        }
+
+        public static void ShowLessonEntries(DataGridView dataGridView, string studentName)
+        {
+            DataTable dt = new();
+
+            //Generates columns
+            dt.Columns.Add("Student Name", typeof(string));
+            dt.Columns.Add("Date", typeof(string));
+            dt.Columns.Add("Start", typeof(string));
+            dt.Columns.Add("End", typeof(string));
+            dt.Columns.Add("Cost", typeof(string));
+
+            //Makes all columns read only.
+            for (int i = 0; i < dt.Columns.Count; i++)
+            {
+                dt.Columns[i].ReadOnly = true;
+            }
+
+            //Gets current students lesson entries
+            List<LessonEntry> lessonEntries = StudentMethods.GetStudent(studentName).LessonEntries;
+
+            //Adds rows to data table
+            for (int i = 0; i < lessonEntries.Count; i++)
+            {
+                LessonEntry lessonEntry = lessonEntries[i];
+
+                dt.Rows.Add(studentName, lessonEntry.Date, lessonEntry.StartTime,
+                    lessonEntry.FinishTime, lessonEntry.LessonCost);
+            }
+
+            //Shows the data of data table in data grid view.
+            dataGridView.DataSource = dt;
         }
     }
 }

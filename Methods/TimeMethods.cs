@@ -1,4 +1,4 @@
-﻿namespace DersTakip
+﻿namespace StudentMeter
 {
     public static class TimeMethods
     {
@@ -28,8 +28,8 @@
         public static float CalculateHours(string startHours, string startMinute, string finishHours, string finishMinutes)
         {
             //Calculates the difference of minutes and hours.
-            float minutes = CustomConvert.ToFloat(finishMinutes) - CustomConvert.ToFloat(startMinute);
-            float hours = CustomConvert.ToFloat(finishHours) - CustomConvert.ToFloat(startHours);
+            float minutes = Convert.ToInt16(finishMinutes) - Convert.ToInt16(startMinute);
+            float hours = Convert.ToInt16(finishHours) - Convert.ToInt16(startHours);
 
             //Bug guarding.
             if (minutes < 0)
@@ -58,17 +58,19 @@
                 minutes = 30;
             }
 
-            return hours + (minutes / 60);
+            return hours + ((float)minutes / 60);
         }
 
         public static string IsEmpty(string text)
         {
             if (string.IsNullOrEmpty(text))
             {
-                text = "00";
+                return "00";
             }
-
-            return text;
+            else
+            {
+                return text;
+            }
         }
     }
 }

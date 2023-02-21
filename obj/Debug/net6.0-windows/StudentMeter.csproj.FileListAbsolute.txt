@@ -6,7 +6,6 @@ C:\Users\fuat\Desktop\Kodlama\StudentMeter\bin\Debug\net6.0-windows\StudentMeter
 C:\Users\fuat\Desktop\Kodlama\StudentMeter\bin\Debug\net6.0-windows\Newtonsoft.Json.dll
 C:\Users\fuat\Desktop\Kodlama\StudentMeter\obj\Debug\net6.0-windows\StudentMeter.csproj.AssemblyReference.cache
 C:\Users\fuat\Desktop\Kodlama\StudentMeter\obj\Debug\net6.0-windows\StudentMeter.Properties.Resources.resources
-C:\Users\fuat\Desktop\Kodlama\StudentMeter\obj\Debug\net6.0-windows\DersTakip.FollowUpForm.resources
 C:\Users\fuat\Desktop\Kodlama\StudentMeter\obj\Debug\net6.0-windows\StudentMeter.csproj.GenerateResource.cache
 C:\Users\fuat\Desktop\Kodlama\StudentMeter\obj\Debug\net6.0-windows\StudentMeter.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\fuat\Desktop\Kodlama\StudentMeter\obj\Debug\net6.0-windows\StudentMeter.AssemblyInfoInputs.cache
@@ -18,3 +17,4 @@ C:\Users\fuat\Desktop\Kodlama\StudentMeter\obj\Debug\net6.0-windows\refint\Stude
 C:\Users\fuat\Desktop\Kodlama\StudentMeter\obj\Debug\net6.0-windows\StudentMeter.pdb
 C:\Users\fuat\Desktop\Kodlama\StudentMeter\obj\Debug\net6.0-windows\StudentMeter.genruntimeconfig.cache
 C:\Users\fuat\Desktop\Kodlama\StudentMeter\obj\Debug\net6.0-windows\ref\StudentMeter.dll
+C:\Users\fuat\Desktop\Kodlama\StudentMeter\obj\Debug\net6.0-windows\StudentMeter.StudentMeterForm.resources

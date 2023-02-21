@@ -1,6 +1,6 @@
-﻿namespace DersTakip
+﻿namespace StudentMeter
 {
-    public static class DebtMethods
+    public static class StudentMethods
     {
         public static List<Student> Students { get; } = new();
 

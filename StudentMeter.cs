@@ -1,13 +1,13 @@
-namespace DersTakip
+namespace StudentMeter
 {
-    public partial class FollowUpForm : Form
+    public partial class StudentMeterForm : Form
     {
         private readonly List<ComboBox> _comboBoxes = new();
         private string _selectedName = "";
 
         #region Form
 
-        public FollowUpForm()
+        public StudentMeterForm()
         {
             InitializeComponent();
         }
@@ -31,7 +31,7 @@ namespace DersTakip
 
         private void UpdateForm()
         {
-            Student[] students = DebtMethods.Students.ToArray();
+            Student[] students = StudentMethods.Students.ToArray();
             string[] allStudents = new string[students.Length];
 
             //Gets students' names.
@@ -54,7 +54,7 @@ namespace DersTakip
             }
 
             //Updates data grid view.
-            DataViewer.Update(dataGridViewer);
+            DataViewer.Update(dataGridView_TotalValues);
         }
 
         #endregion Form
@@ -85,7 +85,7 @@ namespace DersTakip
             }
 
             //Updates the list of students.
-            DebtMethods.UpdateStudent(_selectedName, currentName);
+            StudentMethods.UpdateStudent(_selectedName, currentName);
 
             //Resets selecting name.
             _selectedName = "";
@@ -106,7 +106,7 @@ namespace DersTakip
             }
 
             //Gets the row from data grid view.
-            DataGridViewRow dataGridViewRow = dataGridViewer.Rows[index];
+            DataGridViewRow dataGridViewRow = dataGridView_TotalValues.Rows[index];
 
             //Gets name from cell as string.
             string? result = dataGridViewRow.Cells[0].Value.ToString();
@@ -156,14 +156,22 @@ namespace DersTakip
             finishTime_Hour.Text = TimeMethods.IsEmpty(finishTime_Hour.Text);
             finishTime_Minutes.Text = TimeMethods.IsEmpty(finishTime_Minutes.Text);
 
+            string date = DateTime.Now.ToString("dd.MM.yyyy");
+            string startTime = startTime_Hour.Text + ":" + startTime_Minutes.Text;
+            string finishTime = finishTime_Hour.Text + ":" + finishTime_Minutes.Text;
+            string costText = costTextBox.Text;
+
+            Student student = StudentMethods.GetStudent(studentName);
+            student.LessonEntries.Add(new LessonEntry(date, startTime, finishTime, costText));
+
             //Calculates hours.
             float timeDifference = TimeMethods.CalculateHours(startTime_Hour.Text, startTime_Minutes.Text, finishTime_Hour.Text, finishTime_Minutes.Text);
 
             //Gets the payment of lessons per hour.
-            float cost = CustomConvert.ToFloat(costTextBox.Text);
+            float cost = CustomConvert.ToFloat(costText);
 
             //Adds debt to the student.
-            DebtMethods.AddDebt(studentName, timeDifference, cost);
+            StudentMethods.AddDebt(studentName, timeDifference, cost);
 
             //Updates data grid view.
             UpdateForm();
@@ -178,7 +186,7 @@ namespace DersTakip
             float payment = CustomConvert.ToFloat(paidMoneyTextBox.Text);
 
             //Paies the debt
-            DebtMethods.PayDebt(studentName, payment);
+            StudentMethods.PayDebt(studentName, payment);
 
             //Updates data grid view.
             UpdateForm();
@@ -190,10 +198,10 @@ namespace DersTakip
             string name = studentNameComboBox3.Text;
 
             //Gets the student
-            Student student = DebtMethods.GetStudent(name);
+            Student student = StudentMethods.GetStudent(name);
 
             //If the _selectedName is exist, deletes it.
-            DebtMethods.Students.Remove(student);
+            StudentMethods.Students.Remove(student);
 
             //Updates data grid view.
             UpdateForm();
@@ -202,7 +210,7 @@ namespace DersTakip
         private void ShowProfitButton_Click(object sender, EventArgs e)
         {
             //Gets list.
-            List<Student> students = DebtMethods.Students;
+            List<Student> students = StudentMethods.Students;
 
             float sum = 0;
 
@@ -216,5 +224,14 @@ namespace DersTakip
         }
 
         #endregion Button Methods
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            string studentName = studentNameComboBox1.Text;
+
+            DataViewer.ShowLessonEntries(dataGridView_LessonEntry, studentName);
+
+
+        }
     }
 }
