@@ -1,8 +1,8 @@
 ﻿namespace StudentMeter
 {
-    internal static class FormMethods
+    public static class FormMethods
     {
-        internal static void SetTimeToBoxes(TextBox hourTextBox, TextBox minuteTextBox)
+        public static void SetTimeToBoxes(TextBox hourTextBox, TextBox minuteTextBox)
         {
             //Gets results of time.
             string[] result = TimeMethods.GetCurrentTimeAsText();

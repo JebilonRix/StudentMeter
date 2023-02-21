@@ -2,7 +2,6 @@ namespace StudentMeter
 {
     public partial class StudentMeterForm : Form
     {
-        private readonly List<ComboBox> _comboBoxes = new();
         private string _selectedName = "";
 
         #region Form
@@ -14,11 +13,6 @@ namespace StudentMeter
 
         private void FollowUpForm_Load(object sender, EventArgs e)
         {
-            //Adds combo boxes to list.
-            _comboBoxes.Add(studentNameComboBox1);
-            _comboBoxes.Add(studentNameComboBox2);
-            _comboBoxes.Add(studentNameComboBox3);
-
             //Loads the data
             SaveLoad.Load();
 
@@ -26,35 +20,32 @@ namespace StudentMeter
             DataViewer.Start();
 
             //Updates the form.
-            UpdateForm();
+            UpdateForm("");
         }
 
-        private void UpdateForm()
+        private void UpdateForm(string currentStudentName)
         {
             Student[] students = StudentMethods.Students.ToArray();
-            string[] allStudents = new string[students.Length];
+            string[] nameOfStudents = new string[students.Length];
 
             //Gets students' names.
             for (int i = 0; i < students.Length; i++)
             {
-                allStudents[i] = students[i].StudentName;
+                nameOfStudents[i] = students[i].StudentName;
             }
 
-            //Clears combo boxes.
-            for (int i = 0; i < _comboBoxes.Count; i++)
-            {
-                _comboBoxes[i].Text = "";
-                _comboBoxes[i].Items.Clear();
-            }
+            //Clears combo box.
+            studentNameComboBox.Items.Clear();
 
-            //Adds the names to combo boxes
-            for (int j = 0; j < _comboBoxes.Count; j++)
-            {
-                _comboBoxes[j].Items.AddRange(allStudents);
-            }
+            //Adds the names to combo box
+            studentNameComboBox.Items.AddRange(nameOfStudents);
+
+            //Clears selected name.
+            studentNameComboBox.Text = currentStudentName;
 
             //Updates data grid view.
-            DataViewer.Update(dataGridView_TotalValues);
+            DataViewer.UpdateTotalView(dataGridView_TotalValues);
+            DataViewer.UpdateEntryView(dataGridView_LessonEntry, studentNameComboBox.Text);
         }
 
         #endregion Form
@@ -67,10 +58,7 @@ namespace StudentMeter
             _selectedName = GetFirstCellValue(e);
 
             //Changes value of combo boxes to selected name.
-            for (int i = 0; i < _comboBoxes.Count; i++)
-            {
-                _comboBoxes[i].Text = _selectedName;
-            }
+            studentNameComboBox.Text = _selectedName;
         }
 
         private void DataGridViewer_CellValueChanged(object sender, DataGridViewCellEventArgs e)
@@ -91,7 +79,7 @@ namespace StudentMeter
             _selectedName = "";
 
             //Updates data grid view.
-            UpdateForm();
+            UpdateForm(currentName);
         }
 
         private string GetFirstCellValue(DataGridViewCellEventArgs e)
@@ -126,11 +114,13 @@ namespace StudentMeter
 
         private void CurrentTimeStartButton_Click(object sender, EventArgs e)
         {
+            //Sets current time to text boxes.
             FormMethods.SetTimeToBoxes(startTime_Hour, startTime_Minutes);
         }
 
         private void CurrentTimeFinishButton_Click(object sender, EventArgs e)
         {
+            //Sets current time to text boxes.
             FormMethods.SetTimeToBoxes(finishTime_Hour, finishTime_Minutes);
         }
 
@@ -140,15 +130,16 @@ namespace StudentMeter
             SaveLoad.Save();
 
             //Updates data grid view.
-            UpdateForm();
-
-            MessageBox.Show("Saved");
+            UpdateForm("");
         }
 
         private void AddDebtButton_Click(object sender, EventArgs e)
         {
-            //Gets the student's _selectedName from combo box.
-            string studentName = studentNameComboBox1.Text;
+            if (string.IsNullOrEmpty(studentNameComboBox.Text))
+            {
+                MessageBox.Show("There is no name. Please select a student name or enter new name.");
+                return;
+            }
 
             //Handle empty areas
             startTime_Hour.Text = TimeMethods.IsEmpty(startTime_Hour.Text);
@@ -156,11 +147,28 @@ namespace StudentMeter
             finishTime_Hour.Text = TimeMethods.IsEmpty(finishTime_Hour.Text);
             finishTime_Minutes.Text = TimeMethods.IsEmpty(finishTime_Minutes.Text);
 
+            if (Convert.ToInt16(startTime_Hour.Text) > 23 || Convert.ToInt16(finishTime_Hour.Text) > 23)
+            {
+                MessageBox.Show("Hours can not be bigger than 23.");
+                return;
+            }
+
+            if (Convert.ToInt16(startTime_Minutes.Text) > 59 || Convert.ToInt16(finishTime_Minutes.Text) > 59)
+            {
+                MessageBox.Show("Minutes can not be bigger than 59.");
+                return;
+            }
+
+            //Gets the student's _selectedName from combo box.
+            string studentName = studentNameComboBox.Text;
+
+            //Handle formating.
             string date = DateTime.Now.ToString("dd.MM.yyyy");
             string startTime = startTime_Hour.Text + ":" + startTime_Minutes.Text;
             string finishTime = finishTime_Hour.Text + ":" + finishTime_Minutes.Text;
             string costText = costTextBox.Text;
 
+            //Handles lesson entry and adds it to the student.
             Student student = StudentMethods.GetStudent(studentName);
             student.LessonEntries.Add(new LessonEntry(date, startTime, finishTime, costText));
 
@@ -168,34 +176,52 @@ namespace StudentMeter
             float timeDifference = TimeMethods.CalculateHours(startTime_Hour.Text, startTime_Minutes.Text, finishTime_Hour.Text, finishTime_Minutes.Text);
 
             //Gets the payment of lessons per hour.
-            float cost = CustomConvert.ToFloat(costText);
+            int cost = Convert.ToInt16(costText);
 
             //Adds debt to the student.
             StudentMethods.AddDebt(studentName, timeDifference, cost);
 
             //Updates data grid view.
-            UpdateForm();
+            UpdateForm(studentName);
+
+            //Auto-save
+            SaveLoad.Save();
         }
 
         private void AddPaymentButton_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(studentNameComboBox.Text))
+            {
+                MessageBox.Show("Please select a student.");
+                return;
+            }
+
             //Gets the student's _selectedName from combo box.
-            string studentName = studentNameComboBox2.Text;
+            string studentName = studentNameComboBox.Text;
 
             //Gets the payment value.
-            float payment = CustomConvert.ToFloat(paidMoneyTextBox.Text);
+            int payment = Convert.ToInt16(paidMoneyTextBox.Text);
 
             //Paies the debt
             StudentMethods.PayDebt(studentName, payment);
 
             //Updates data grid view.
-            UpdateForm();
+            UpdateForm(studentName);
+
+            //Auto-save
+            SaveLoad.Save();
         }
 
         private void DeleteButton_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(studentNameComboBox.Text))
+            {
+                MessageBox.Show("Please select a student.");
+                return;
+            }
+
             //Gets student's _selectedName
-            string name = studentNameComboBox3.Text;
+            string name = studentNameComboBox.Text;
 
             //Gets the student
             Student student = StudentMethods.GetStudent(name);
@@ -204,34 +230,14 @@ namespace StudentMeter
             StudentMethods.Students.Remove(student);
 
             //Updates data grid view.
-            UpdateForm();
+            UpdateForm("");
         }
 
-        private void ShowProfitButton_Click(object sender, EventArgs e)
+        private void StudentNameComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //Gets list.
-            List<Student> students = StudentMethods.Students;
-
-            float sum = 0;
-
-            //Adds total paid money to the sum.
-            for (int i = 0; i < students.Count; i++)
-            {
-                sum += students[i].TotalPaidMoney;
-            }
-
-            MessageBox.Show($"Your profit is = {sum}");
+            DataViewer.UpdateEntryView(dataGridView_LessonEntry, studentNameComboBox.Text);
         }
 
         #endregion Button Methods
-
-        private void Button1_Click(object sender, EventArgs e)
-        {
-            string studentName = studentNameComboBox1.Text;
-
-            DataViewer.ShowLessonEntries(dataGridView_LessonEntry, studentName);
-
-
-        }
     }
 }

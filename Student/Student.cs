@@ -9,8 +9,8 @@
 
         public string StudentName { get; private set; } = "";
         public float TotalHours { get; set; } = 0;
-        public float TotalDebt { get; set; } = 0;
-        public float TotalPaidMoney { get; set; } = 0;
+        public int TotalDebt { get; set; } = 0;
+        public int TotalPaidMoney { get; set; } = 0;
         public List<LessonEntry> LessonEntries { get; } = new();
     }
 }

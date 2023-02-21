@@ -25,12 +25,39 @@
             return result;
         }
 
+        public static float CalculateHours(string startTime, string finishTime)
+        {
+            //Splits texts of times.
+            string[] start = startTime.Split(':');
+            string[] finish = finishTime.Split(':');
+
+            return CalculateHours(start[0], start[1], finish[0], finish[1]);
+        }
+
         public static float CalculateHours(string startHours, string startMinute, string finishHours, string finishMinutes)
         {
-            //Calculates the difference of minutes and hours.
-            float minutes = Convert.ToInt16(finishMinutes) - Convert.ToInt16(startMinute);
-            float hours = Convert.ToInt16(finishHours) - Convert.ToInt16(startHours);
+            //Start
+            int _startHours = Convert.ToInt16(startHours);
+            int _startMinutes = Convert.ToInt16(startMinute);
 
+            //Finish
+            int _finishHours = Convert.ToInt16(finishHours);
+            int _finishMinutes = Convert.ToInt16(finishMinutes);
+
+            //Calculates the difference of minutes and hours.
+            int minutes = _finishMinutes - _startMinutes;
+            int hours = _finishHours - _startHours;
+
+            return CalculateDifferenceOfTime(minutes, hours);
+        }
+
+        public static string IsEmpty(string text)
+        {
+            return string.IsNullOrEmpty(text) ? "00" : text;
+        }
+
+        private static float CalculateDifferenceOfTime(int minutes, int hours)
+        {
             //Bug guarding.
             if (minutes < 0)
             {
@@ -59,18 +86,6 @@
             }
 
             return hours + ((float)minutes / 60);
-        }
-
-        public static string IsEmpty(string text)
-        {
-            if (string.IsNullOrEmpty(text))
-            {
-                return "00";
-            }
-            else
-            {
-                return text;
-            }
         }
     }
 }

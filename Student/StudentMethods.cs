@@ -49,7 +49,7 @@
             Students.Add(newStudent);
         }
 
-        public static void AddDebt(string studentName, float hours, float costOfLesson)
+        public static void AddDebt(string studentName, float hours, int costOfLesson)
         {
             //Gets the current newStudent.
             Student student = GetStudent(studentName);
@@ -58,10 +58,10 @@
             student.TotalHours += hours;
 
             //Calculates the debt and adds it to the total debt.
-            student.TotalDebt += costOfLesson * hours;
+            student.TotalDebt += (int)(costOfLesson * hours);
         }
 
-        public static void PayDebt(string studentName, float paidMoney)
+        public static void PayDebt(string studentName, int paidMoney)
         {
             //Gets the current student.
             Student student = GetStudent(studentName);
