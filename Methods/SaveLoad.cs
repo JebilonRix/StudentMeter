@@ -17,6 +17,12 @@ namespace StudentMeter
 
         public static void Load()
         {
+            if (!File.Exists(_saveFileStudentsPath))
+            {
+                File.Create(_saveFileStudentsPath);
+                return;
+            }
+
             //Reads the save file.
             string jsonData = File.ReadAllText(_saveFileStudentsPath);
 
