@@ -17,13 +17,8 @@ namespace StudentMeter
             _dataTableTotal.Columns.Add("Difference", typeof(int));
 
             //Makes columns read only because i dont want to change values via cells except names.
-            for (int i = 0; i < _dataTableTotal.Columns.Count; i++)
+            for (int i = 1; i < _dataTableTotal.Columns.Count; i++)
             {
-                if (i == 0)
-                {
-                    continue;
-                }
-
                 _dataTableTotal.Columns[i].ReadOnly = true;
             }
 
@@ -84,7 +79,7 @@ namespace StudentMeter
                 //Adds rows to data table entries.
                 _dataTableEntries.Rows.Add(studentName, lessonEntry.Date,
                     lessonEntry.StartTime, lessonEntry.FinishTime, lessonEntry.LessonCost,
-                    TimeMethods.CalculateHours(lessonEntry.StartTime, lessonEntry.FinishTime) * Convert.ToInt16(lessonEntry.LessonCost));
+                    TimeMethods.CalculateHoursUnsplitted(lessonEntry.StartTime, lessonEntry.FinishTime) * Convert.ToInt16(lessonEntry.LessonCost));
             }
 
             //Shows the data of data table in data grid view.

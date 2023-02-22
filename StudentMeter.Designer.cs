@@ -29,8 +29,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.addLessonButton = new System.Windows.Forms.Button();
             this.studentNameComboBox = new System.Windows.Forms.ComboBox();
             this.lessonPanel = new System.Windows.Forms.Panel();
@@ -55,10 +55,12 @@
             this.deleteButton = new System.Windows.Forms.Button();
             this.dataGridView_TotalValues = new System.Windows.Forms.DataGridView();
             this.dataGridView_LessonEntry = new System.Windows.Forms.DataGridView();
+            this.panelMain = new System.Windows.Forms.Panel();
             this.lessonPanel.SuspendLayout();
             this.paymentPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_TotalValues)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_LessonEntry)).BeginInit();
+            this.panelMain.SuspendLayout();
             this.SuspendLayout();
             // 
             // addLessonButton
@@ -67,7 +69,7 @@
             this.addLessonButton.Location = new System.Drawing.Point(143, 125);
             this.addLessonButton.Name = "addLessonButton";
             this.addLessonButton.Size = new System.Drawing.Size(181, 40);
-            this.addLessonButton.TabIndex = 1;
+            this.addLessonButton.TabIndex = 9;
             this.addLessonButton.Text = "Add Lesson Entry";
             this.addLessonButton.UseVisualStyleBackColor = true;
             this.addLessonButton.Click += new System.EventHandler(this.AddDebtButton_Click);
@@ -76,10 +78,10 @@
             // 
             this.studentNameComboBox.Font = new System.Drawing.Font("Courier New", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.studentNameComboBox.FormattingEnabled = true;
-            this.studentNameComboBox.Location = new System.Drawing.Point(155, 7);
+            this.studentNameComboBox.Location = new System.Drawing.Point(156, 11);
             this.studentNameComboBox.Name = "studentNameComboBox";
-            this.studentNameComboBox.Size = new System.Drawing.Size(241, 25);
-            this.studentNameComboBox.TabIndex = 2;
+            this.studentNameComboBox.Size = new System.Drawing.Size(240, 25);
+            this.studentNameComboBox.TabIndex = 1;
             this.studentNameComboBox.SelectedIndexChanged += new System.EventHandler(this.StudentNameComboBox_SelectedIndexChanged);
             // 
             // lessonPanel
@@ -99,7 +101,7 @@
             this.lessonPanel.Controls.Add(this.label_StartTime);
             this.lessonPanel.Controls.Add(this.addLessonButton);
             this.lessonPanel.Font = new System.Drawing.Font("Courier New", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lessonPanel.Location = new System.Drawing.Point(12, 48);
+            this.lessonPanel.Location = new System.Drawing.Point(12, 42);
             this.lessonPanel.Name = "lessonPanel";
             this.lessonPanel.Size = new System.Drawing.Size(384, 175);
             this.lessonPanel.TabIndex = 3;
@@ -117,9 +119,10 @@
             // 
             this.finishTime_Minutes.Font = new System.Drawing.Font("Courier New", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.finishTime_Minutes.Location = new System.Drawing.Point(249, 56);
+            this.finishTime_Minutes.MaxLength = 59;
             this.finishTime_Minutes.Name = "finishTime_Minutes";
             this.finishTime_Minutes.Size = new System.Drawing.Size(75, 24);
-            this.finishTime_Minutes.TabIndex = 15;
+            this.finishTime_Minutes.TabIndex = 6;
             // 
             // label_StartTime_Middle
             // 
@@ -134,9 +137,10 @@
             // 
             this.startTime_Minutes.Font = new System.Drawing.Font("Courier New", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.startTime_Minutes.Location = new System.Drawing.Point(249, 15);
+            this.startTime_Minutes.MaxLength = 59;
             this.startTime_Minutes.Name = "startTime_Minutes";
             this.startTime_Minutes.Size = new System.Drawing.Size(75, 24);
-            this.startTime_Minutes.TabIndex = 12;
+            this.startTime_Minutes.TabIndex = 3;
             // 
             // costTextBox
             // 
@@ -144,7 +148,7 @@
             this.costTextBox.Location = new System.Drawing.Point(143, 93);
             this.costTextBox.Name = "costTextBox";
             this.costTextBox.Size = new System.Drawing.Size(181, 24);
-            this.costTextBox.TabIndex = 13;
+            this.costTextBox.TabIndex = 8;
             this.costTextBox.Text = "50";
             // 
             // label_Cost
@@ -160,20 +164,20 @@
             // currentTimeFinishButton
             // 
             this.currentTimeFinishButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.currentTimeFinishButton.Location = new System.Drawing.Point(350, 60);
+            this.currentTimeFinishButton.Location = new System.Drawing.Point(330, 58);
             this.currentTimeFinishButton.Name = "currentTimeFinishButton";
             this.currentTimeFinishButton.Size = new System.Drawing.Size(20, 20);
-            this.currentTimeFinishButton.TabIndex = 11;
+            this.currentTimeFinishButton.TabIndex = 7;
             this.currentTimeFinishButton.UseVisualStyleBackColor = false;
             this.currentTimeFinishButton.Click += new System.EventHandler(this.CurrentTimeFinishButton_Click);
             // 
             // currentTimeStartButton
             // 
             this.currentTimeStartButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.currentTimeStartButton.Location = new System.Drawing.Point(350, 20);
+            this.currentTimeStartButton.Location = new System.Drawing.Point(330, 16);
             this.currentTimeStartButton.Name = "currentTimeStartButton";
             this.currentTimeStartButton.Size = new System.Drawing.Size(20, 20);
-            this.currentTimeStartButton.TabIndex = 10;
+            this.currentTimeStartButton.TabIndex = 4;
             this.currentTimeStartButton.UseVisualStyleBackColor = false;
             this.currentTimeStartButton.Click += new System.EventHandler(this.CurrentTimeStartButton_Click);
             // 
@@ -181,17 +185,19 @@
             // 
             this.finishTime_Hour.Font = new System.Drawing.Font("Courier New", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.finishTime_Hour.Location = new System.Drawing.Point(143, 55);
+            this.finishTime_Hour.MaxLength = 24;
             this.finishTime_Hour.Name = "finishTime_Hour";
             this.finishTime_Hour.Size = new System.Drawing.Size(75, 24);
-            this.finishTime_Hour.TabIndex = 9;
+            this.finishTime_Hour.TabIndex = 5;
             // 
             // startTime_Hour
             // 
             this.startTime_Hour.Font = new System.Drawing.Font("Courier New", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.startTime_Hour.Location = new System.Drawing.Point(143, 15);
+            this.startTime_Hour.MaxLength = 24;
             this.startTime_Hour.Name = "startTime_Hour";
             this.startTime_Hour.Size = new System.Drawing.Size(75, 24);
-            this.startTime_Hour.TabIndex = 8;
+            this.startTime_Hour.TabIndex = 2;
             // 
             // label_FinishTime
             // 
@@ -217,7 +223,7 @@
             // 
             this.label_Name.AutoSize = true;
             this.label_Name.Font = new System.Drawing.Font("Courier New", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label_Name.Location = new System.Drawing.Point(25, 12);
+            this.label_Name.Location = new System.Drawing.Point(12, 15);
             this.label_Name.Margin = new System.Windows.Forms.Padding(3);
             this.label_Name.Name = "label_Name";
             this.label_Name.Size = new System.Drawing.Size(125, 17);
@@ -230,7 +236,7 @@
             this.paymentPanel.Controls.Add(this.addPaymentButton);
             this.paymentPanel.Controls.Add(this.paidMoneyTextBox);
             this.paymentPanel.Controls.Add(this.label_Money);
-            this.paymentPanel.Location = new System.Drawing.Point(12, 229);
+            this.paymentPanel.Location = new System.Drawing.Point(12, 223);
             this.paymentPanel.Name = "paymentPanel";
             this.paymentPanel.Size = new System.Drawing.Size(384, 95);
             this.paymentPanel.TabIndex = 5;
@@ -241,7 +247,7 @@
             this.addPaymentButton.Location = new System.Drawing.Point(142, 44);
             this.addPaymentButton.Name = "addPaymentButton";
             this.addPaymentButton.Size = new System.Drawing.Size(182, 40);
-            this.addPaymentButton.TabIndex = 15;
+            this.addPaymentButton.TabIndex = 11;
             this.addPaymentButton.Text = "Enter Payment";
             this.addPaymentButton.UseVisualStyleBackColor = true;
             this.addPaymentButton.Click += new System.EventHandler(this.AddPaymentButton_Click);
@@ -250,9 +256,10 @@
             // 
             this.paidMoneyTextBox.Font = new System.Drawing.Font("Courier New", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.paidMoneyTextBox.Location = new System.Drawing.Point(143, 14);
+            this.paidMoneyTextBox.MaxLength = 9999;
             this.paidMoneyTextBox.Name = "paidMoneyTextBox";
             this.paidMoneyTextBox.Size = new System.Drawing.Size(181, 24);
-            this.paidMoneyTextBox.TabIndex = 14;
+            this.paidMoneyTextBox.TabIndex = 10;
             // 
             // label_Money
             // 
@@ -268,10 +275,10 @@
             // saveButton
             // 
             this.saveButton.Font = new System.Drawing.Font("Courier New", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.saveButton.Location = new System.Drawing.Point(434, 43);
+            this.saveButton.Location = new System.Drawing.Point(214, 324);
             this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(130, 30);
-            this.saveButton.TabIndex = 2;
+            this.saveButton.Size = new System.Drawing.Size(182, 30);
+            this.saveButton.TabIndex = 13;
             this.saveButton.Text = "Save";
             this.saveButton.UseVisualStyleBackColor = true;
             this.saveButton.Click += new System.EventHandler(this.SaveButton_Click);
@@ -279,11 +286,11 @@
             // deleteButton
             // 
             this.deleteButton.Font = new System.Drawing.Font("Courier New", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.deleteButton.Location = new System.Drawing.Point(434, 7);
+            this.deleteButton.Location = new System.Drawing.Point(12, 324);
             this.deleteButton.Name = "deleteButton";
-            this.deleteButton.Size = new System.Drawing.Size(130, 30);
-            this.deleteButton.TabIndex = 18;
-            this.deleteButton.Text = "Delete";
+            this.deleteButton.Size = new System.Drawing.Size(196, 30);
+            this.deleteButton.TabIndex = 12;
+            this.deleteButton.Text = "Delete Student";
             this.deleteButton.UseVisualStyleBackColor = true;
             this.deleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
             // 
@@ -295,25 +302,25 @@
             this.dataGridView_TotalValues.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView_TotalValues.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
             this.dataGridView_TotalValues.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView_TotalValues.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView_TotalValues.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView_TotalValues.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Courier New", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView_TotalValues.DefaultCellStyle = dataGridViewCellStyle4;
-            this.dataGridView_TotalValues.Dock = System.Windows.Forms.DockStyle.Right;
-            this.dataGridView_TotalValues.Location = new System.Drawing.Point(599, 0);
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Courier New", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView_TotalValues.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridView_TotalValues.Dock = System.Windows.Forms.DockStyle.Top;
+            this.dataGridView_TotalValues.Location = new System.Drawing.Point(0, 0);
             this.dataGridView_TotalValues.Name = "dataGridView_TotalValues";
             this.dataGridView_TotalValues.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dataGridView_TotalValues.RowHeadersWidth = 20;
@@ -322,8 +329,9 @@
             this.dataGridView_TotalValues.ShowCellErrors = false;
             this.dataGridView_TotalValues.ShowCellToolTips = false;
             this.dataGridView_TotalValues.ShowRowErrors = false;
-            this.dataGridView_TotalValues.Size = new System.Drawing.Size(516, 550);
-            this.dataGridView_TotalValues.TabIndex = 10;
+            this.dataGridView_TotalValues.Size = new System.Drawing.Size(1008, 254);
+            this.dataGridView_TotalValues.TabIndex = 999;
+            this.dataGridView_TotalValues.TabStop = false;
             this.dataGridView_TotalValues.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridViewer_CellClick);
             this.dataGridView_TotalValues.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridViewer_CellValueChanged);
             // 
@@ -332,26 +340,35 @@
             this.dataGridView_LessonEntry.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView_LessonEntry.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
             this.dataGridView_LessonEntry.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_LessonEntry.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.dataGridView_LessonEntry.Location = new System.Drawing.Point(0, 350);
+            this.dataGridView_LessonEntry.Location = new System.Drawing.Point(0, 260);
             this.dataGridView_LessonEntry.Name = "dataGridView_LessonEntry";
             this.dataGridView_LessonEntry.RowTemplate.Height = 25;
-            this.dataGridView_LessonEntry.Size = new System.Drawing.Size(599, 200);
-            this.dataGridView_LessonEntry.TabIndex = 13;
+            this.dataGridView_LessonEntry.Size = new System.Drawing.Size(585, 362);
+            this.dataGridView_LessonEntry.TabIndex = 999;
+            this.dataGridView_LessonEntry.TabStop = false;
+            // 
+            // panelMain
+            // 
+            this.panelMain.BackColor = System.Drawing.Color.RosyBrown;
+            this.panelMain.Controls.Add(this.label_Name);
+            this.panelMain.Controls.Add(this.deleteButton);
+            this.panelMain.Controls.Add(this.studentNameComboBox);
+            this.panelMain.Controls.Add(this.lessonPanel);
+            this.panelMain.Controls.Add(this.saveButton);
+            this.panelMain.Controls.Add(this.paymentPanel);
+            this.panelMain.Location = new System.Drawing.Point(591, 260);
+            this.panelMain.Name = "panelMain";
+            this.panelMain.Size = new System.Drawing.Size(411, 362);
+            this.panelMain.TabIndex = 19;
             // 
             // StudentMeterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1115, 550);
-            this.Controls.Add(this.deleteButton);
+            this.ClientSize = new System.Drawing.Size(1008, 629);
+            this.Controls.Add(this.panelMain);
             this.Controls.Add(this.dataGridView_LessonEntry);
             this.Controls.Add(this.dataGridView_TotalValues);
-            this.Controls.Add(this.saveButton);
-            this.Controls.Add(this.paymentPanel);
-            this.Controls.Add(this.lessonPanel);
-            this.Controls.Add(this.label_Name);
-            this.Controls.Add(this.studentNameComboBox);
             this.Name = "StudentMeterForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "StudentMeter";
@@ -362,8 +379,9 @@
             this.paymentPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_TotalValues)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_LessonEntry)).EndInit();
+            this.panelMain.ResumeLayout(false);
+            this.panelMain.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -378,14 +396,15 @@
         private ComboBox studentNameComboBox;
         private DataGridView dataGridView_LessonEntry;
         private DataGridView dataGridView_TotalValues;
-        private Label label_Name;
-        private Label label_StartTime_Middle;
-        private Label label_FinishTime_Middle;
-        private Label label_StartTime;
-        private Label label_FinishTime;
         private Label label_Cost;
+        private Label label_FinishTime;
+        private Label label_FinishTime_Middle;
         private Label label_Money;
+        private Label label_Name;
+        private Label label_StartTime;
+        private Label label_StartTime_Middle;
         private Panel lessonPanel;
+        private Panel panelMain;
         private Panel paymentPanel;
         private TextBox costTextBox;
         private TextBox finishTime_Hour;

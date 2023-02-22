@@ -11,30 +11,37 @@
 
             //Gets minute's value as text.
             string minute = currentTime.Minute.ToString();
+            string hour = currentTime.Hour.ToString();
 
-            //To ensure the layout of the writing.
-            if (currentTime.Minute < 10)
-            {
-                minute = "0" + currentTime.Minute.ToString();
-            }
+            //Fix texts' format.
+            minute = FixFormatting(minute);
+            hour = FixFormatting(hour);
 
-            result[0] = currentTime.Hour.ToString();
+            result[0] = hour;
             result[1] = minute;
 
             //Returns hour and minute
             return result;
         }
 
-        public static float CalculateHours(string startTime, string finishTime)
+        /// <summary>
+        /// Splits string with ":", index 0 is hour, index 1 is minute.
+        /// </summary>
+        public static string[] SplitTime(string time)
         {
-            //Splits texts of times.
-            string[] start = startTime.Split(':');
-            string[] finish = finishTime.Split(':');
-
-            return CalculateHours(start[0], start[1], finish[0], finish[1]);
+            return time.Split(':');
         }
 
-        public static float CalculateHours(string startHours, string startMinute, string finishHours, string finishMinutes)
+        public static float CalculateHoursUnsplitted(string startTime, string finishTime)
+        {
+            //Splits texts of times.
+            string[] start = SplitTime(startTime);
+            string[] finish = SplitTime(finishTime);
+
+            return CalculateHoursSplitted(start[0], start[1], finish[0], finish[1]);
+        }
+
+        public static float CalculateHoursSplitted(string startHours, string startMinute, string finishHours, string finishMinutes)
         {
             //Start
             int _startHours = Convert.ToInt16(startHours);
@@ -51,9 +58,21 @@
             return CalculateDifferenceOfTime(minutes, hours);
         }
 
-        public static string IsEmpty(string text)
+        /// <summary>
+        /// If text boxes of time are empty, adds 00 to them
+        /// </summary>
+        public static string FixFormatting(string text)
         {
-            return string.IsNullOrEmpty(text) ? "00" : text;
+            if (string.IsNullOrEmpty(text))
+            {
+                text = "00";
+            }
+            else if (Convert.ToInt16(text) < 10)
+            {
+                text = "0" + text;
+            }
+
+            return text;
         }
 
         private static float CalculateDifferenceOfTime(int minutes, int hours)
@@ -72,11 +91,11 @@
             }
 
             //Rounds minutes.
-            if (minutes < 15)
+            if (minutes < 20)
             {
                 minutes = 0;
             }
-            else if (minutes > 45)
+            else if (minutes >= 40)
             {
                 minutes = 60;
             }

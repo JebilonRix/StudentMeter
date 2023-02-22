@@ -142,10 +142,10 @@ namespace StudentMeter
             }
 
             //Handle empty areas
-            startTime_Hour.Text = TimeMethods.IsEmpty(startTime_Hour.Text);
-            startTime_Minutes.Text = TimeMethods.IsEmpty(startTime_Minutes.Text);
-            finishTime_Hour.Text = TimeMethods.IsEmpty(finishTime_Hour.Text);
-            finishTime_Minutes.Text = TimeMethods.IsEmpty(finishTime_Minutes.Text);
+            startTime_Hour.Text = TimeMethods.FixFormatting(startTime_Hour.Text);
+            startTime_Minutes.Text = TimeMethods.FixFormatting(startTime_Minutes.Text);
+            finishTime_Hour.Text = TimeMethods.FixFormatting(finishTime_Hour.Text);
+            finishTime_Minutes.Text = TimeMethods.FixFormatting(finishTime_Minutes.Text);
 
             if (Convert.ToInt16(startTime_Hour.Text) > 23 || Convert.ToInt16(finishTime_Hour.Text) > 23)
             {
@@ -168,12 +168,24 @@ namespace StudentMeter
             string finishTime = finishTime_Hour.Text + ":" + finishTime_Minutes.Text;
             string costText = costTextBox.Text;
 
-            //Handles lesson entry and adds it to the student.
+            //Generates new lesson entry
+            LessonEntry lessonEntry = new(date, startTime, finishTime, costText);
+
+            //Handles lesson lessonEntry and adds it to the student.
             Student student = StudentMethods.GetStudent(studentName);
-            student.LessonEntries.Add(new LessonEntry(date, startTime, finishTime, costText));
+
+            //Check if last lesson and new entry is same or not. If they are same, the method do not continue.
+            if (StudentMethods.CheckLastLessonWithCurrentLesson(student, lessonEntry) == false)
+            {
+                MessageBox.Show("Lesson entries cannot be the same or a new lesson entry cannot be started before the last lesson entry.");
+                return;
+            }
+
+            //Adds lesson entry to student.
+            student.LessonEntries.Add(lessonEntry);
 
             //Calculates hours.
-            float timeDifference = TimeMethods.CalculateHours(startTime_Hour.Text, startTime_Minutes.Text, finishTime_Hour.Text, finishTime_Minutes.Text);
+            float timeDifference = TimeMethods.CalculateHoursSplitted(startTime_Hour.Text, startTime_Minutes.Text, finishTime_Hour.Text, finishTime_Minutes.Text);
 
             //Gets the payment of lessons per hour.
             int cost = Convert.ToInt16(costText);
