@@ -41,12 +41,14 @@ namespace StudentMeter
             //Adds the names to combo box
             studentNameComboBox.Items.AddRange(nameOfStudents);
 
-            //Clears selected name.
+            //Clears selected studentName.
             studentNameComboBox.Text = currentStudentName;
 
             //Updates data grid view.
             DataViewer.UpdateTotalView(dataGridView_TotalValues);
             DataViewer.UpdateEntryView(dataGridView_LessonEntry, studentNameComboBox.Text);
+
+            //Todo: update select row via selected or added student name
         }
 
         #endregion Form
@@ -55,19 +57,19 @@ namespace StudentMeter
 
         private void DataGridViewer_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            //Gets the name.
+            //Gets the studentName.
             _selectedName = GetFirstCellValue(e);
 
-            //Changes value of combo boxes to selected name.
+            //Changes value of combo boxes to selected studentName.
             studentNameComboBox.Text = _selectedName;
         }
 
         private void DataGridViewer_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            //Gets the name.
+            //Gets the studentName.
             string currentName = GetFirstCellValue(e);
 
-            //If selected name and current name are same. Do not update the form.
+            //If selected studentName and current studentName are same. Do not update the form.
             if (_selectedName == currentName)
             {
                 return;
@@ -76,7 +78,7 @@ namespace StudentMeter
             //Updates the list of students.
             StudentMethods.UpdateStudent(_selectedName, currentName);
 
-            //Resets selecting name.
+            //Resets selecting studentName.
             _selectedName = "";
 
             //Updates data grid view.
@@ -97,7 +99,7 @@ namespace StudentMeter
             //Gets the row from data grid view.
             DataGridViewRow dataGridViewRow = dataGridView_TotalValues.Rows[index];
 
-            //Gets name from cell as string.
+            //Gets studentName from cell as string.
             string? result = dataGridViewRow.Cells[0].Value.ToString();
 
             //Bug guard
@@ -113,6 +115,28 @@ namespace StudentMeter
 
         #region Button Methods
 
+        private void AddStudent_Button_Click(object sender, EventArgs e)
+        {
+            string studentName = studentNameComboBox.Text;
+
+            if (string.IsNullOrEmpty(studentName))
+            {
+                MessageBox.Show("Please enter a studentName.");
+                return;
+            }
+
+            if (StudentMethods.DoesStudentExist(studentName))
+            {
+                MessageBox.Show("Student has already existed.");
+                return;
+            }
+
+            StudentMethods.AddStudent(studentName);
+
+            //Updates the form
+            UpdateForm(studentName);
+        }
+
         private void CurrentTimeStartButton_Click(object sender, EventArgs e)
         {
             //Sets current time to text boxes.
@@ -125,20 +149,11 @@ namespace StudentMeter
             FormMethods.SetTimeToBoxes(finishTime_Hour, finishTime_Minutes);
         }
 
-        private void SaveButton_Click(object sender, EventArgs e)
-        {
-            //Saves the data.
-            SaveLoad.Save();
-
-            //Updates data grid view.
-            UpdateForm("");
-        }
-
         private void AddDebtButton_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(studentNameComboBox.Text))
             {
-                MessageBox.Show("There is no name. Please select a student name or enter new name.");
+                MessageBox.Show("There is no studentName. Please select a student studentName or enter new studentName.");
                 return;
             }
 
@@ -272,9 +287,9 @@ namespace StudentMeter
             //Gets student's _selectedName
             string name = studentNameComboBox.Text;
 
-            if (StudentMethods.TryGetStudent(name) == null)
+            if (!StudentMethods.DoesStudentExist(name))
             {
-                MessageBox.Show("Student does not exist.");
+                MessageBox.Show("Student does not exist. The deleting is cancelled.");
                 return;
             }
 
@@ -283,6 +298,9 @@ namespace StudentMeter
 
             //If the _selectedName is exist, deletes it.
             StudentMethods.Students.Remove(student);
+
+            //Saves the data.
+            SaveLoad.Save();
 
             //Updates data grid view.
             UpdateForm("");
@@ -330,6 +348,12 @@ namespace StudentMeter
         private void PaidMoneyTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = FormMethods.InputCheckNumber(e);
+        }
+
+        //Todo: çalýþmýyor
+        private void DataGridView_TotalValues_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = FormMethods.InputCheckName(e);
         }
 
         #endregion Input Handling

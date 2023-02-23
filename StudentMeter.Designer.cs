@@ -29,8 +29,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.addLessonButton = new System.Windows.Forms.Button();
             this.studentNameComboBox = new System.Windows.Forms.ComboBox();
             this.lessonPanel = new System.Windows.Forms.Panel();
@@ -51,11 +51,11 @@
             this.addPaymentButton = new System.Windows.Forms.Button();
             this.paidMoneyTextBox = new System.Windows.Forms.TextBox();
             this.label_Money = new System.Windows.Forms.Label();
-            this.saveButton = new System.Windows.Forms.Button();
             this.deleteButton = new System.Windows.Forms.Button();
             this.dataGridView_TotalValues = new System.Windows.Forms.DataGridView();
             this.dataGridView_LessonEntry = new System.Windows.Forms.DataGridView();
             this.panelMain = new System.Windows.Forms.Panel();
+            this.addStudent_Button = new System.Windows.Forms.Button();
             this.lessonPanel.SuspendLayout();
             this.paymentPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_TotalValues)).BeginInit();
@@ -81,7 +81,7 @@
             this.studentNameComboBox.Location = new System.Drawing.Point(156, 11);
             this.studentNameComboBox.Name = "studentNameComboBox";
             this.studentNameComboBox.Size = new System.Drawing.Size(240, 25);
-            this.studentNameComboBox.TabIndex = 1;
+            this.studentNameComboBox.TabIndex = 0;
             this.studentNameComboBox.SelectedIndexChanged += new System.EventHandler(this.StudentNameComboBox_SelectedIndexChanged);
             this.studentNameComboBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.StudentNameComboBox_KeyPress);
             // 
@@ -102,7 +102,7 @@
             this.lessonPanel.Controls.Add(this.label_StartTime);
             this.lessonPanel.Controls.Add(this.addLessonButton);
             this.lessonPanel.Font = new System.Drawing.Font("Courier New", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lessonPanel.Location = new System.Drawing.Point(12, 42);
+            this.lessonPanel.Location = new System.Drawing.Point(12, 79);
             this.lessonPanel.Name = "lessonPanel";
             this.lessonPanel.Size = new System.Drawing.Size(384, 175);
             this.lessonPanel.TabIndex = 3;
@@ -228,11 +228,11 @@
             // label_Name
             // 
             this.label_Name.AutoSize = true;
-            this.label_Name.Font = new System.Drawing.Font("Courier New", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label_Name.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label_Name.Location = new System.Drawing.Point(12, 15);
             this.label_Name.Margin = new System.Windows.Forms.Padding(3);
             this.label_Name.Name = "label_Name";
-            this.label_Name.Size = new System.Drawing.Size(125, 17);
+            this.label_Name.Size = new System.Drawing.Size(138, 18);
             this.label_Name.TabIndex = 3;
             this.label_Name.Text = "Name(Student)";
             // 
@@ -242,7 +242,7 @@
             this.paymentPanel.Controls.Add(this.addPaymentButton);
             this.paymentPanel.Controls.Add(this.paidMoneyTextBox);
             this.paymentPanel.Controls.Add(this.label_Money);
-            this.paymentPanel.Location = new System.Drawing.Point(12, 223);
+            this.paymentPanel.Location = new System.Drawing.Point(12, 260);
             this.paymentPanel.Name = "paymentPanel";
             this.paymentPanel.Size = new System.Drawing.Size(384, 95);
             this.paymentPanel.TabIndex = 5;
@@ -278,23 +278,12 @@
             this.label_Money.TabIndex = 6;
             this.label_Money.Text = "Money";
             // 
-            // saveButton
-            // 
-            this.saveButton.Font = new System.Drawing.Font("Courier New", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.saveButton.Location = new System.Drawing.Point(214, 324);
-            this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(182, 30);
-            this.saveButton.TabIndex = 13;
-            this.saveButton.Text = "Save";
-            this.saveButton.UseVisualStyleBackColor = true;
-            this.saveButton.Click += new System.EventHandler(this.SaveButton_Click);
-            // 
             // deleteButton
             // 
             this.deleteButton.Font = new System.Drawing.Font("Courier New", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.deleteButton.Location = new System.Drawing.Point(12, 324);
+            this.deleteButton.Location = new System.Drawing.Point(12, 42);
             this.deleteButton.Name = "deleteButton";
-            this.deleteButton.Size = new System.Drawing.Size(196, 30);
+            this.deleteButton.Size = new System.Drawing.Size(186, 30);
             this.deleteButton.TabIndex = 12;
             this.deleteButton.Text = "Delete Student";
             this.deleteButton.UseVisualStyleBackColor = true;
@@ -308,25 +297,26 @@
             this.dataGridView_TotalValues.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView_TotalValues.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
             this.dataGridView_TotalValues.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView_TotalValues.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView_TotalValues.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.dataGridView_TotalValues.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Courier New", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView_TotalValues.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Courier New", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView_TotalValues.DefaultCellStyle = dataGridViewCellStyle8;
             this.dataGridView_TotalValues.Dock = System.Windows.Forms.DockStyle.Top;
             this.dataGridView_TotalValues.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView_TotalValues.MultiSelect = false;
             this.dataGridView_TotalValues.Name = "dataGridView_TotalValues";
             this.dataGridView_TotalValues.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dataGridView_TotalValues.RowHeadersWidth = 20;
@@ -340,6 +330,7 @@
             this.dataGridView_TotalValues.TabStop = false;
             this.dataGridView_TotalValues.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridViewer_CellClick);
             this.dataGridView_TotalValues.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridViewer_CellValueChanged);
+            this.dataGridView_TotalValues.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DataGridView_TotalValues_KeyPress);
             // 
             // dataGridView_LessonEntry
             // 
@@ -347,7 +338,9 @@
             this.dataGridView_LessonEntry.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
             this.dataGridView_LessonEntry.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_LessonEntry.Location = new System.Drawing.Point(0, 260);
+            this.dataGridView_LessonEntry.MultiSelect = false;
             this.dataGridView_LessonEntry.Name = "dataGridView_LessonEntry";
+            this.dataGridView_LessonEntry.ReadOnly = true;
             this.dataGridView_LessonEntry.RowTemplate.Height = 25;
             this.dataGridView_LessonEntry.Size = new System.Drawing.Size(585, 362);
             this.dataGridView_LessonEntry.TabIndex = 999;
@@ -356,16 +349,27 @@
             // panelMain
             // 
             this.panelMain.BackColor = System.Drawing.Color.RosyBrown;
+            this.panelMain.Controls.Add(this.addStudent_Button);
             this.panelMain.Controls.Add(this.label_Name);
             this.panelMain.Controls.Add(this.deleteButton);
             this.panelMain.Controls.Add(this.studentNameComboBox);
             this.panelMain.Controls.Add(this.lessonPanel);
-            this.panelMain.Controls.Add(this.saveButton);
             this.panelMain.Controls.Add(this.paymentPanel);
             this.panelMain.Location = new System.Drawing.Point(591, 260);
             this.panelMain.Name = "panelMain";
             this.panelMain.Size = new System.Drawing.Size(411, 362);
             this.panelMain.TabIndex = 19;
+            // 
+            // addStudent_Button
+            // 
+            this.addStudent_Button.Font = new System.Drawing.Font("Courier New", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.addStudent_Button.Location = new System.Drawing.Point(204, 42);
+            this.addStudent_Button.Name = "addStudent_Button";
+            this.addStudent_Button.Size = new System.Drawing.Size(192, 30);
+            this.addStudent_Button.TabIndex = 1;
+            this.addStudent_Button.Text = "Add Student";
+            this.addStudent_Button.UseVisualStyleBackColor = true;
+            this.addStudent_Button.Click += new System.EventHandler(this.AddStudent_Button_Click);
             // 
             // StudentMeterForm
             // 
@@ -398,7 +402,6 @@
         private Button currentTimeFinishButton;
         private Button currentTimeStartButton;
         private Button deleteButton;
-        private Button saveButton;
         private ComboBox studentNameComboBox;
         private DataGridView dataGridView_LessonEntry;
         private DataGridView dataGridView_TotalValues;
@@ -418,5 +421,6 @@
         private TextBox startTime_Minutes;
         private TextBox finishTime_Hour;
         private TextBox startTime_Hour;
+        private Button addStudent_Button;
     }
 }

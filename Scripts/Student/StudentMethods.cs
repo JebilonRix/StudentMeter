@@ -4,39 +4,48 @@
     {
         public static List<Student> Students { get; } = new();
 
-        public static Student TryGetStudent(string studentName)
+        /// <summary>
+        /// Checks the student exist in list.
+        /// </summary>
+        public static bool DoesStudentExist(string studentName)
         {
             //Searches currrent student in list.
             for (int i = 0; i < Students.Count; i++)
             {
                 if (Students[i].StudentName == studentName)
                 {
-                    return Students[i];
+                    return true;
                 }
             }
 
-            return null;
+            return false;
+        }
+
+        /// <summary>
+        /// Adds the student to list
+        /// </summary>
+        public static void AddStudent(string studentName)
+        {
+            //Checks the student exists.
+            if (DoesStudentExist(studentName))
+            {
+                return;
+            }
+
+            //Generates a new student.
+            GenerateStudent(studentName);
         }
 
         public static Student GetStudent(string studentName)
         {
-            Student student = TryGetStudent(studentName);
-
-            if (TryGetStudent(studentName) != null)
+            if (!DoesStudentExist(studentName))
             {
-                //if the student exists, returns the student.
-                return student;
+                //if the student does not exists, generates new one and returns the student.
+                return GenerateStudent(studentName);
             }
-            else
-            {
-                //If the student does not exist in list, generates new lastLessonEntry
-                student = new(studentName);
 
-                //And adds it to list.
-                Students.Add(student);
-
-                return student;
-            }
+            //Returns the student.
+            return Students.FirstOrDefault(x => x.StudentName == studentName);
         }
 
         public static void UpdateStudent(string oldName, string newName)
@@ -120,6 +129,17 @@
             }
 
             return true;
+        }
+
+        private static Student GenerateStudent(string studentName)
+        {
+            //If the student does not exist in list, generates new lastLessonEntry
+            Student student = new(studentName);
+
+            //And adds it to list.
+            Students.Add(student);
+
+            return student;
         }
     }
 }

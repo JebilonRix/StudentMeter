@@ -37,6 +37,10 @@ namespace StudentMeter
             }
         }
 
+        public static void SelectInDataTableTotal(DataGridView dataGridView, string studentName)
+        {
+        }
+
         public static void UpdateTotalView(DataGridView dataGridView)
         {
             //Bug guard.
