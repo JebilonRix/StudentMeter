@@ -8,6 +8,12 @@ namespace StudentMeter
 
         public static void Save()
         {
+            //Bug guard.
+            if (StudentMethods.Students.Count == 0)
+            {
+                return;
+            }
+
             //Converts dictionary members to json data.
             string jsonData = JsonConvert.SerializeObject(StudentMethods.Students);
 
@@ -17,6 +23,7 @@ namespace StudentMeter
 
         public static void Load()
         {
+            //If there is no save file, generates a new one.
             if (!File.Exists(_saveFileStudentsPath))
             {
                 File.Create(_saveFileStudentsPath);
@@ -27,7 +34,7 @@ namespace StudentMeter
             string jsonData = File.ReadAllText(_saveFileStudentsPath);
 
             //Converts the data which is in json to list.
-            List<Student> listOfStudents = JsonConvert.DeserializeObject<List<Student>>(jsonData);
+            List<Student>? listOfStudents = JsonConvert.DeserializeObject<List<Student>>(jsonData);
 
             //Null check
             if (listOfStudents == null)

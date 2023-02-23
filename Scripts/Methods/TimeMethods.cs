@@ -67,7 +67,7 @@
             {
                 text = "00";
             }
-            else if (Convert.ToInt16(text) < 10)
+            else if (text.Length < 2)
             {
                 text = "0" + text;
             }

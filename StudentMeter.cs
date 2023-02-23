@@ -2,6 +2,7 @@ namespace StudentMeter
 {
     public partial class StudentMeterForm : Form
     {
+        private const string _errorHeader = "Error!";
         private string _selectedName = "";
 
         #region Form
@@ -141,17 +142,24 @@ namespace StudentMeter
                 return;
             }
 
-            int.TryParse(costTextBox.Text, out int value);
+            //Gets the payment of lessons per hour.
+            string costText = costTextBox.Text;
+            int costValue;
 
-            if (value <= 0)
+            try
             {
-                MessageBox.Show("Cost can not be lower than 0.");
+                costValue = Convert.ToInt16(costText);
+            }
+            catch (FormatException ex)
+            {
+                MessageBox.Show(ex.Message, _errorHeader);
+                costTextBox.Text = "00";
                 return;
             }
-
-            if (value > 99999)
+            catch (OverflowException ex)
             {
-                MessageBox.Show("Cost must be lower than 10,000.");
+                MessageBox.Show(ex.Message, _errorHeader);
+                costTextBox.Text = "32767";
                 return;
             }
 
@@ -180,7 +188,6 @@ namespace StudentMeter
             string date = DateTime.Now.ToString("dd.MM.yyyy");
             string startTime = startTime_Hour.Text + ":" + startTime_Minutes.Text;
             string finishTime = finishTime_Hour.Text + ":" + finishTime_Minutes.Text;
-            string costText = costTextBox.Text;
 
             //Generates new lesson entry
             LessonEntry lessonEntry = new(date, startTime, finishTime, costText);
@@ -199,13 +206,11 @@ namespace StudentMeter
             student.LessonEntries.Add(lessonEntry);
 
             //Calculates hours.
-            float timeDifference = TimeMethods.CalculateHoursSplitted(startTime_Hour.Text, startTime_Minutes.Text, finishTime_Hour.Text, finishTime_Minutes.Text);
-
-            //Gets the payment of lessons per hour.
-            int cost = Convert.ToInt16(costText);
+            float timeDifference = TimeMethods.CalculateHoursSplitted(startTime_Hour.Text, startTime_Minutes.Text,
+                finishTime_Hour.Text, finishTime_Minutes.Text);
 
             //Adds debt to the student.
-            StudentMethods.AddDebt(studentName, timeDifference, cost);
+            StudentMethods.AddDebt(studentName, timeDifference, costValue);
 
             //Updates data grid view.
             UpdateForm(studentName);
@@ -222,28 +227,32 @@ namespace StudentMeter
                 return;
             }
 
-            int.TryParse(studentNameComboBox.Text, out int value);
+            string paymentText = paidMoneyTextBox.Text;
+            //Gets the payment value.
+            int paymentValue;
 
-            if (value > 9999)
+            try
             {
-                MessageBox.Show("Payment must be lower than 10,000.");
+                paymentValue = Convert.ToInt16(paymentText);
+            }
+            catch (FormatException ex)
+            {
+                MessageBox.Show(ex.Message, _errorHeader);
+                paidMoneyTextBox.Text = "0";
                 return;
             }
-
-            if (value <= 0)
+            catch (OverflowException ex)
             {
-                MessageBox.Show("Payment must be more than 0.");
+                MessageBox.Show(ex.Message, _errorHeader);
+                paidMoneyTextBox.Text = "32767";
                 return;
             }
 
             //Gets the student's _selectedName from combo box.
             string studentName = studentNameComboBox.Text;
 
-            //Gets the payment value.
-            int payment = Convert.ToInt16(paidMoneyTextBox.Text);
-
             //Paies the debt
-            StudentMethods.PayDebt(studentName, payment);
+            StudentMethods.PayDebt(studentName, paymentValue);
 
             //Updates data grid view.
             UpdateForm(studentName);
@@ -263,6 +272,12 @@ namespace StudentMeter
             //Gets student's _selectedName
             string name = studentNameComboBox.Text;
 
+            if (StudentMethods.TryGetStudent(name) == null)
+            {
+                MessageBox.Show("Student does not exist.");
+                return;
+            }
+
             //Gets the student
             Student student = StudentMethods.GetStudent(name);
 
@@ -279,5 +294,44 @@ namespace StudentMeter
         }
 
         #endregion Button Methods
+
+        #region Input Handling
+
+        private void StartTime_Hour_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = FormMethods.InputCheckNumber(e);
+        }
+
+        private void StartTime_Minutes_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = FormMethods.InputCheckNumber(e);
+        }
+
+        private void FinishTime_Hour_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = FormMethods.InputCheckNumber(e);
+        }
+
+        private void FinishTime_Minute_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = FormMethods.InputCheckNumber(e);
+        }
+
+        private void StudentNameComboBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = FormMethods.InputCheckName(e);
+        }
+
+        private void CostTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = FormMethods.InputCheckNumber(e);
+        }
+
+        private void PaidMoneyTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = FormMethods.InputCheckNumber(e);
+        }
+
+        #endregion Input Handling
     }
 }

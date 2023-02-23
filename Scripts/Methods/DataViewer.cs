@@ -79,7 +79,8 @@ namespace StudentMeter
                 //Adds rows to data table entries.
                 _dataTableEntries.Rows.Add(studentName, lessonEntry.Date,
                     lessonEntry.StartTime, lessonEntry.FinishTime, lessonEntry.LessonCost,
-                    TimeMethods.CalculateHoursUnsplitted(lessonEntry.StartTime, lessonEntry.FinishTime) * Convert.ToInt16(lessonEntry.LessonCost));
+                    TimeMethods.CalculateHoursUnsplitted(lessonEntry.StartTime, lessonEntry.FinishTime)
+                    * Convert.ToInt16(lessonEntry.LessonCost));
             }
 
             //Shows the data of data table in data grid view.

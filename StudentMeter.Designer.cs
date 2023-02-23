@@ -83,6 +83,7 @@
             this.studentNameComboBox.Size = new System.Drawing.Size(240, 25);
             this.studentNameComboBox.TabIndex = 1;
             this.studentNameComboBox.SelectedIndexChanged += new System.EventHandler(this.StudentNameComboBox_SelectedIndexChanged);
+            this.studentNameComboBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.StudentNameComboBox_KeyPress);
             // 
             // lessonPanel
             // 
@@ -119,10 +120,11 @@
             // 
             this.finishTime_Minutes.Font = new System.Drawing.Font("Courier New", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.finishTime_Minutes.Location = new System.Drawing.Point(249, 56);
-            this.finishTime_Minutes.MaxLength = 59;
+            this.finishTime_Minutes.MaxLength = 2;
             this.finishTime_Minutes.Name = "finishTime_Minutes";
             this.finishTime_Minutes.Size = new System.Drawing.Size(75, 24);
             this.finishTime_Minutes.TabIndex = 6;
+            this.finishTime_Minutes.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.FinishTime_Minute_KeyPress);
             // 
             // label_StartTime_Middle
             // 
@@ -137,10 +139,11 @@
             // 
             this.startTime_Minutes.Font = new System.Drawing.Font("Courier New", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.startTime_Minutes.Location = new System.Drawing.Point(249, 15);
-            this.startTime_Minutes.MaxLength = 59;
+            this.startTime_Minutes.MaxLength = 2;
             this.startTime_Minutes.Name = "startTime_Minutes";
             this.startTime_Minutes.Size = new System.Drawing.Size(75, 24);
             this.startTime_Minutes.TabIndex = 3;
+            this.startTime_Minutes.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.StartTime_Minutes_KeyPress);
             // 
             // costTextBox
             // 
@@ -150,6 +153,7 @@
             this.costTextBox.Size = new System.Drawing.Size(181, 24);
             this.costTextBox.TabIndex = 8;
             this.costTextBox.Text = "50";
+            this.costTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CostTextBox_KeyPress);
             // 
             // label_Cost
             // 
@@ -185,19 +189,21 @@
             // 
             this.finishTime_Hour.Font = new System.Drawing.Font("Courier New", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.finishTime_Hour.Location = new System.Drawing.Point(143, 55);
-            this.finishTime_Hour.MaxLength = 23;
+            this.finishTime_Hour.MaxLength = 2;
             this.finishTime_Hour.Name = "finishTime_Hour";
             this.finishTime_Hour.Size = new System.Drawing.Size(75, 24);
             this.finishTime_Hour.TabIndex = 5;
+            this.finishTime_Hour.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.FinishTime_Hour_KeyPress);
             // 
             // startTime_Hour
             // 
             this.startTime_Hour.Font = new System.Drawing.Font("Courier New", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.startTime_Hour.Location = new System.Drawing.Point(143, 15);
-            this.startTime_Hour.MaxLength = 23;
+            this.startTime_Hour.MaxLength = 2;
             this.startTime_Hour.Name = "startTime_Hour";
             this.startTime_Hour.Size = new System.Drawing.Size(75, 24);
             this.startTime_Hour.TabIndex = 2;
+            this.startTime_Hour.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.StartTime_Hour_KeyPress);
             // 
             // label_FinishTime
             // 
@@ -259,6 +265,7 @@
             this.paidMoneyTextBox.Name = "paidMoneyTextBox";
             this.paidMoneyTextBox.Size = new System.Drawing.Size(181, 24);
             this.paidMoneyTextBox.TabIndex = 10;
+            this.paidMoneyTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PaidMoneyTextBox_KeyPress);
             // 
             // label_Money
             // 
@@ -406,10 +413,10 @@
         private Panel panelMain;
         private Panel paymentPanel;
         private TextBox costTextBox;
-        private TextBox finishTime_Hour;
         private TextBox finishTime_Minutes;
         private TextBox paidMoneyTextBox;
-        private TextBox startTime_Hour;
         private TextBox startTime_Minutes;
+        private TextBox finishTime_Hour;
+        private TextBox startTime_Hour;
     }
 }

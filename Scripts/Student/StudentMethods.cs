@@ -4,7 +4,7 @@
     {
         public static List<Student> Students { get; } = new();
 
-        public static Student GetStudent(string studentName)
+        public static Student TryGetStudent(string studentName)
         {
             //Searches currrent student in list.
             for (int i = 0; i < Students.Count; i++)
@@ -15,18 +15,28 @@
                 }
             }
 
-            //If the student does not exist in list, generates new lastLessonEntry
-            Student result = new(studentName)
+            return null;
+        }
+
+        public static Student GetStudent(string studentName)
+        {
+            Student student = TryGetStudent(studentName);
+
+            if (TryGetStudent(studentName) != null)
             {
-                TotalHours = 0,
-                TotalDebt = 0,
-                TotalPaidMoney = 0
-            };
+                //if the student exists, returns the student.
+                return student;
+            }
+            else
+            {
+                //If the student does not exist in list, generates new lastLessonEntry
+                student = new(studentName);
 
-            //And adds it to list.
-            Students.Add(result);
+                //And adds it to list.
+                Students.Add(student);
 
-            return result;
+                return student;
+            }
         }
 
         public static void UpdateStudent(string oldName, string newName)
@@ -39,7 +49,8 @@
             {
                 TotalHours = oldStudent.TotalHours,
                 TotalDebt = oldStudent.TotalDebt,
-                TotalPaidMoney = oldStudent.TotalPaidMoney
+                TotalPaidMoney = oldStudent.TotalPaidMoney,
+                LessonEntries = oldStudent.LessonEntries
             };
 
             //Removes old lastLessonEntry.
