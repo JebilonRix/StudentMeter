@@ -185,7 +185,7 @@
             // 
             this.finishTime_Hour.Font = new System.Drawing.Font("Courier New", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.finishTime_Hour.Location = new System.Drawing.Point(143, 55);
-            this.finishTime_Hour.MaxLength = 24;
+            this.finishTime_Hour.MaxLength = 23;
             this.finishTime_Hour.Name = "finishTime_Hour";
             this.finishTime_Hour.Size = new System.Drawing.Size(75, 24);
             this.finishTime_Hour.TabIndex = 5;
@@ -194,7 +194,7 @@
             // 
             this.startTime_Hour.Font = new System.Drawing.Font("Courier New", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.startTime_Hour.Location = new System.Drawing.Point(143, 15);
-            this.startTime_Hour.MaxLength = 24;
+            this.startTime_Hour.MaxLength = 23;
             this.startTime_Hour.Name = "startTime_Hour";
             this.startTime_Hour.Size = new System.Drawing.Size(75, 24);
             this.startTime_Hour.TabIndex = 2;
@@ -256,7 +256,6 @@
             // 
             this.paidMoneyTextBox.Font = new System.Drawing.Font("Courier New", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.paidMoneyTextBox.Location = new System.Drawing.Point(143, 14);
-            this.paidMoneyTextBox.MaxLength = 9999;
             this.paidMoneyTextBox.Name = "paidMoneyTextBox";
             this.paidMoneyTextBox.Size = new System.Drawing.Size(181, 24);
             this.paidMoneyTextBox.TabIndex = 10;

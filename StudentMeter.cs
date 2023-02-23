@@ -141,6 +141,20 @@ namespace StudentMeter
                 return;
             }
 
+            int.TryParse(costTextBox.Text, out int value);
+
+            if (value <= 0)
+            {
+                MessageBox.Show("Cost can not be lower than 0.");
+                return;
+            }
+
+            if (value > 99999)
+            {
+                MessageBox.Show("Cost must be lower than 10,000.");
+                return;
+            }
+
             //Handle empty areas
             startTime_Hour.Text = TimeMethods.FixFormatting(startTime_Hour.Text);
             startTime_Minutes.Text = TimeMethods.FixFormatting(startTime_Minutes.Text);
@@ -205,6 +219,20 @@ namespace StudentMeter
             if (string.IsNullOrEmpty(studentNameComboBox.Text))
             {
                 MessageBox.Show("Please select a student.");
+                return;
+            }
+
+            int.TryParse(studentNameComboBox.Text, out int value);
+
+            if (value > 9999)
+            {
+                MessageBox.Show("Payment must be lower than 10,000.");
+                return;
+            }
+
+            if (value <= 0)
+            {
+                MessageBox.Show("Payment must be more than 0.");
                 return;
             }
 
