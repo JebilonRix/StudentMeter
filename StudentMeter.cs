@@ -48,12 +48,31 @@ namespace StudentMeter
             DataViewer.UpdateTotalView(dataGridView_TotalValues);
             DataViewer.UpdateEntryView(dataGridView_LessonEntry, studentNameComboBox.Text);
 
-            //Todo: update select row via selected or added student name
+            if (currentStudentName != "")
+            {
+                SelectRowViaStudentName(currentStudentName);
+            }
         }
 
         #endregion Form
 
         #region Data Grid View
+
+        private void SelectRowViaStudentName(string selectedStudentName)
+        {
+            foreach (DataGridViewRow row in dataGridView_TotalValues.Rows)
+            {
+                if (row.Cells["Name"].Value?.ToString() == selectedStudentName)
+                {
+                    //Makes row selected
+                    row.Selected = true;
+
+                    //Sets current cell.
+                    dataGridView_TotalValues.CurrentCell = row.Cells[0];
+                    break;
+                }
+            }
+        }
 
         private void DataGridViewer_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -117,20 +136,24 @@ namespace StudentMeter
 
         private void AddStudent_Button_Click(object sender, EventArgs e)
         {
+            //Gets the name from studentNameComboBox
             string studentName = studentNameComboBox.Text;
 
+            //Checks if the student name is empty.
             if (string.IsNullOrEmpty(studentName))
             {
                 MessageBox.Show("Please enter a studentName.");
                 return;
             }
 
+            //Checks if the student already exists.
             if (StudentMethods.DoesStudentExist(studentName))
             {
                 MessageBox.Show("Student has already existed.");
                 return;
             }
 
+            //Adds the student.
             StudentMethods.AddStudent(studentName);
 
             //Updates the form
@@ -236,14 +259,17 @@ namespace StudentMeter
 
         private void AddPaymentButton_Click(object sender, EventArgs e)
         {
+            //Checks if student name is selected
             if (string.IsNullOrEmpty(studentNameComboBox.Text))
             {
                 MessageBox.Show("Please select a student.");
                 return;
             }
 
+            //Gets payment text from paidMoneyTextBox
             string paymentText = paidMoneyTextBox.Text;
-            //Gets the payment value.
+
+            //Converts payment text to payment value
             int paymentValue;
 
             try
@@ -263,16 +289,16 @@ namespace StudentMeter
                 return;
             }
 
-            //Gets the student's _selectedName from combo box.
+            //Get the name of the selected student
             string studentName = studentNameComboBox.Text;
 
-            //Paies the debt
+            //Paies the debt of the student.
             StudentMethods.PayDebt(studentName, paymentValue);
 
             //Updates data grid view.
             UpdateForm(studentName);
 
-            //Auto-save
+            //Auto-save the changes
             SaveLoad.Save();
         }
 
@@ -308,7 +334,20 @@ namespace StudentMeter
 
         private void StudentNameComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DataViewer.UpdateEntryView(dataGridView_LessonEntry, studentNameComboBox.Text);
+            //Null check
+            if (string.IsNullOrEmpty(studentNameComboBox.Text))
+            {
+                return;
+            }
+
+            //Gets name from combo box
+            string selectedStudentName = studentNameComboBox.Text;
+
+            //update entry grid view
+            DataViewer.UpdateEntryView(dataGridView_LessonEntry, selectedStudentName);
+
+            //select the row from dataGridView_TotalValues
+            SelectRowViaStudentName(selectedStudentName);
         }
 
         #endregion Button Methods

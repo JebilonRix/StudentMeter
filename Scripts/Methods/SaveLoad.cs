@@ -4,7 +4,7 @@ namespace StudentMeter
 {
     public static class SaveLoad
     {
-        private static readonly string _saveFileStudentsPath = string.Format(@"{0}\save.json", Application.StartupPath);
+        private static readonly string _saveFileStudentsPath = Path.Combine(Application.StartupPath, "save.json");
 
         public static void Save()
         {
@@ -18,7 +18,10 @@ namespace StudentMeter
             string jsonData = JsonConvert.SerializeObject(StudentMethods.Students);
 
             //Writes json data to the file.
-            File.WriteAllText(_saveFileStudentsPath, jsonData);
+            using (StreamWriter writer = File.CreateText(_saveFileStudentsPath))
+            {
+                writer.Write(jsonData);
+            }
         }
 
         public static void Load()
@@ -30,20 +33,23 @@ namespace StudentMeter
                 return;
             }
 
-            //Reads the save file.
-            string jsonData = File.ReadAllText(_saveFileStudentsPath);
-
-            //Converts the data which is in json to list.
-            List<Student>? listOfStudents = JsonConvert.DeserializeObject<List<Student>>(jsonData);
-
-            //Null check
-            if (listOfStudents == null)
+            using (StreamReader reader = new StreamReader(_saveFileStudentsPath))
             {
-                return;
-            }
+                //Reads the save file.
+                string jsonData = reader.ReadToEnd();
 
-            //Adds to all data to list.
-            StudentMethods.Students.AddRange(listOfStudents);
+                //Converts the data which is in json to list.
+                List<Student>? listOfStudents = JsonConvert.DeserializeObject<List<Student>>(jsonData);
+
+                //Null check
+                if (listOfStudents == null)
+                {
+                    return;
+                }
+
+                //Adds to all data to list.
+                StudentMethods.Students.AddRange(listOfStudents);
+            }
         }
     }
 }

@@ -400,6 +400,7 @@
 
         private Button addLessonButton;
         private Button addPaymentButton;
+        private Button addStudent_Button;
         private Button currentTimeFinishButton;
         private Button currentTimeStartButton;
         private Button deleteButton;
@@ -417,11 +418,10 @@
         private Panel panelMain;
         private Panel paymentPanel;
         private TextBox costTextBox;
+        private TextBox finishTime_Hour;
         private TextBox finishTime_Minutes;
         private TextBox paidMoneyTextBox;
-        private TextBox startTime_Minutes;
-        private TextBox finishTime_Hour;
         private TextBox startTime_Hour;
-        private Button addStudent_Button;
+        private TextBox startTime_Minutes;
     }
 }

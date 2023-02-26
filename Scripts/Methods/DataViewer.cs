@@ -23,7 +23,7 @@ namespace StudentMeter
             }
 
             //Generates columns
-            _dataTableEntries.Columns.Add("Student Name", typeof(string));
+            _dataTableEntries.Columns.Add("Name", typeof(string));
             _dataTableEntries.Columns.Add("Date", typeof(string));
             _dataTableEntries.Columns.Add("Start", typeof(string));
             _dataTableEntries.Columns.Add("End", typeof(string));
@@ -35,10 +35,6 @@ namespace StudentMeter
             {
                 _dataTableEntries.Columns[i].ReadOnly = true;
             }
-        }
-
-        public static void SelectInDataTableTotal(DataGridView dataGridView, string studentName)
-        {
         }
 
         public static void UpdateTotalView(DataGridView dataGridView)

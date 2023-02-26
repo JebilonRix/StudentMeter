@@ -10,9 +10,9 @@
         public static bool DoesStudentExist(string studentName)
         {
             //Searches currrent student in list.
-            for (int i = 0; i < Students.Count; i++)
+            foreach (var student in Students)
             {
-                if (Students[i].StudentName == studentName)
+                if (student.StudentName == studentName)
                 {
                     return true;
                 }
@@ -38,14 +38,14 @@
 
         public static Student GetStudent(string studentName)
         {
-            if (!DoesStudentExist(studentName))
-            {
-                //if the student does not exists, generates new one and returns the student.
-                return GenerateStudent(studentName);
-            }
+            //Searches the student
+            Student? student = Students.FirstOrDefault(x => x.StudentName == studentName);
 
-            //Returns the student.
-            return Students.FirstOrDefault(x => x.StudentName == studentName);
+            //if the student does not exists, generates new one
+            student ??= GenerateStudent(studentName);
+
+            // returns the student.
+            return student;
         }
 
         public static void UpdateStudent(string oldName, string newName)
