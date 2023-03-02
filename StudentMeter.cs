@@ -300,6 +300,8 @@ namespace StudentMeter
 
             //Auto-save the changes
             SaveLoad.Save();
+
+            MessageBox.Show("Payment is added.");
         }
 
         private void DeleteButton_Click(object sender, EventArgs e)

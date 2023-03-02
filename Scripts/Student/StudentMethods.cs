@@ -10,7 +10,7 @@
         public static bool DoesStudentExist(string studentName)
         {
             //Searches currrent student in list.
-            foreach (var student in Students)
+            foreach (Student student in Students)
             {
                 if (student.StudentName == studentName)
                 {
@@ -101,14 +101,19 @@
             //Gets last lesson entry
             LessonEntry lastLessonEntry = student.LessonEntries.Last();
 
+            if (lastLessonEntry.Date != lessonEntry.Date)
+            {
+                return true;
+            }
+
             //Checks starts time of two lesson entries.
-            if (lastLessonEntry.Date == lessonEntry.Date && lastLessonEntry.StartTime == lessonEntry.StartTime)
+            if (lastLessonEntry.StartTime == lessonEntry.StartTime)
             {
                 return false;
             }
 
             //Checks finish time of two lesson entries.
-            if (lastLessonEntry.Date == lessonEntry.Date && lastLessonEntry.FinishTime == lessonEntry.FinishTime)
+            if (lastLessonEntry.FinishTime == lessonEntry.FinishTime)
             {
                 return false;
             }
