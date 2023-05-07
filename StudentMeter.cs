@@ -163,13 +163,23 @@ namespace StudentMeter
         private void CurrentTimeStartButton_Click(object sender, EventArgs e)
         {
             //Sets current time to text boxes.
-            FormMethods.SetTimeToBoxes(startTime_Hour, startTime_Minutes);
+            SetTimeToBoxes(startTime_Hour, startTime_Minutes);
         }
 
         private void CurrentTimeFinishButton_Click(object sender, EventArgs e)
         {
             //Sets current time to text boxes.
-            FormMethods.SetTimeToBoxes(finishTime_Hour, finishTime_Minutes);
+            SetTimeToBoxes(finishTime_Hour, finishTime_Minutes);
+        }
+
+        private void SetTimeToBoxes(TextBox hourTextBox, TextBox minuteTextBox)
+        {
+            //Gets results of time.
+            string[] result = TimeMethods.GetCurrentTimeAsText();
+
+            //Sets currentName time to the text box.
+            hourTextBox.Text = result[0];
+            minuteTextBox.Text = result[1];
         }
 
         private void AddDebtButton_Click(object sender, EventArgs e)
@@ -358,43 +368,43 @@ namespace StudentMeter
 
         private void StartTime_Hour_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e.Handled = FormMethods.InputCheckNumber(e);
+            e.Handled = InputHandler.IsNumber(e);
         }
 
         private void StartTime_Minutes_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e.Handled = FormMethods.InputCheckNumber(e);
+            e.Handled = InputHandler.IsNumber(e);
         }
 
         private void FinishTime_Hour_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e.Handled = FormMethods.InputCheckNumber(e);
+            e.Handled = InputHandler.IsNumber(e);
         }
 
         private void FinishTime_Minute_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e.Handled = FormMethods.InputCheckNumber(e);
+            e.Handled = InputHandler.IsNumber(e);
         }
 
         private void StudentNameComboBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e.Handled = FormMethods.InputCheckName(e);
+            e.Handled = InputHandler.IsLetter(e);
         }
 
         private void CostTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e.Handled = FormMethods.InputCheckNumber(e);
+            e.Handled = InputHandler.IsNumber(e);
         }
 
         private void PaidMoneyTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e.Handled = FormMethods.InputCheckNumber(e);
+            e.Handled = InputHandler.IsNumber(e);
         }
 
         //Todo: çalýþmýyor
         private void DataGridView_TotalValues_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e.Handled = FormMethods.InputCheckName(e);
+            e.Handled = InputHandler.IsLetter(e);
         }
 
         #endregion Input Handling

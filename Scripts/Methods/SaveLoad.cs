@@ -33,7 +33,7 @@ namespace StudentMeter
                 return;
             }
 
-            using (StreamReader reader = new StreamReader(_saveFileStudentsPath))
+            using (StreamReader reader = new(_saveFileStudentsPath))
             {
                 //Reads the save file.
                 string jsonData = reader.ReadToEnd();

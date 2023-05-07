@@ -1,4 +1,6 @@
-﻿namespace StudentMeter
+﻿using System.Windows.Forms;
+
+namespace StudentMeter
 {
     partial class StudentMeterForm
     {
@@ -152,7 +154,7 @@
             this.costTextBox.Name = "costTextBox";
             this.costTextBox.Size = new System.Drawing.Size(181, 24);
             this.costTextBox.TabIndex = 8;
-            this.costTextBox.Text = "50";
+            this.costTextBox.Text = "100";
             this.costTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CostTextBox_KeyPress);
             // 
             // label_Cost
